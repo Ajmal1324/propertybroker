@@ -2,19 +2,34 @@
   "hosting": {
     "public": "build/web",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
     "headers": [
       {
-        "source": "**/*.@(js|css|png|jpg|jpeg|gif|svg|woff|woff2)",
-        "headers": [{ "key": "Cache-Control", "value": "public,max-age=31536000,immutable" }]
+        "source": "**/*.apk",
+        "headers": [
+          { "key": "Content-Type", "value": "application/vnd.android.package-archive" },
+          { "key": "Cache-Control", "value": "public, max-age=3600" }
+        ]
       },
       {
-        "source": "/assetlinks.json",
-        "headers": [{ "key": "Content-Type", "value": "application/json" }]
+        "source": "**/*.webp",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      },
+      {
+        "source": "**/*.js",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      },
+      {
+        "source": "**/*.css",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
       }
     ],
     "rewrites": [
-      { "source": "/.well-known/assetlinks.json", "destination": "/assetlinks.json" },
-      { "source": "**", "destination": "/index.html" }
+      { "source": "/apk/**", "destination": "/apk/index.html" },
+      { "source": "/p/**",   "destination": "/index.html" },
+      { "source": "/b/**",   "destination": "/index.html" },
+      { "source": "**",      "destination": "/index.html" }
     ]
   }
 }

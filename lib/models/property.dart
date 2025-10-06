@@ -1,8 +1,4 @@
-// =================================
-// FILE: lib/models/property.dart
-// =================================
 import 'broker.dart';
-
 
 class Property {
   final String id;
@@ -16,6 +12,7 @@ class Property {
   final String imageUrl;
   final List<String> gallery;
   final Broker broker;
+
   const Property({
     required this.id,
     required this.title,
