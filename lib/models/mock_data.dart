@@ -109,6 +109,9 @@
 // =================================
 // FILE: lib/data/mock_data.dart
 // =================================
+// =================================
+// FILE: lib/data/mock_data.dart
+// =================================
 import 'dart:math';
 import '../models/broker.dart';
 import '../models/property.dart';
@@ -179,6 +182,9 @@ int _deals() => 40 + _rng.nextInt(160);
 
 String _address() => '${1 + _rng.nextInt(200)} ${_pick(_streetNames)}';
 
+// NEW: simple demo 4-digit PIN generator (1000..9999)
+String _pin() => (1000 + _rng.nextInt(9000)).toString();
+
 int _bedsFor(String type) {
   switch (type) {
     case 'Studio':
@@ -190,7 +196,6 @@ int _bedsFor(String type) {
     case '3BHK':
       return 3;
     case '4BHK':
-      return 4;
     case 'Penthouse':
       return 4;
     case 'Villa':
@@ -298,6 +303,7 @@ final List<Broker> mockBrokers = List.generate(25, (i) {
     photoUrl: _unsplashPeople[i % _unsplashPeople.length],
     rating: double.parse(_rating().toStringAsFixed(1)),
     dealsClosed: _deals(),
+    pin: _pin(), // <-- NEW: 4-digit PIN per broker
   );
 });
 
